@@ -25,7 +25,7 @@ function onItemClick() {
     return
 
   router.push({
-    path: '/form-render/render',
+    path: '/question/render',
     query: {
       id: props.record.id,
     },

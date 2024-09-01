@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import NProgress from 'nprogress'
@@ -7,14 +7,14 @@ import 'nprogress/nprogress.css'
 import type { EnhancedRouteLocation } from './types'
 import useRouteTransitionNameStore from '@/stores/modules/routeTransitionName'
 import useRouteCacheStore from '@/stores/modules/routeCache'
-import { REQUEST_TOKEN_KEY } from '@/utils/request'
+import { QUERY_TOKEN_KEY } from '@/utils/request'
 import { localStorage } from '@/utils/local-storage'
 import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 
 NProgress.configure({ showSpinner: true, parent: '#app' })
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.VITE_APP_PUBLIC_PATH),
+  history: createWebHashHistory(import.meta.env.VITE_APP_PUBLIC_PATH),
   routes,
 })
 
@@ -30,7 +30,7 @@ router.beforeEach((to: EnhancedRouteLocation, from, next) => {
 
   // Route cache
   routeCacheStore.addRoute(to)
-  const token = to.query[REQUEST_TOKEN_KEY]
+  const token = to.query[QUERY_TOKEN_KEY]
 
   if (token) {
     localStorage.set(STORAGE_TOKEN_KEY, token)

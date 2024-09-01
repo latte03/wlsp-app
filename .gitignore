@@ -21,5 +21,7 @@ stats.html
 *.sln
 *.sw?
 
+*.zip
+
 # Misc
 .DS_Store
