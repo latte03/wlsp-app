@@ -9,7 +9,7 @@ import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 // 需要注意的是，请尽量保证使用中横线`-` 来作为分隔符，
 // 避免被 nginx 等负载均衡器丢弃了自定义的请求头
 export const REQUEST_TOKEN_KEY = 'Token'
-export const QUERY_TOKEN_KEY = 'appToken'
+export const QUERY_TOKEN_KEY = 'Token'
 
 // 创建 axios 实例
 const request = axios.create({
