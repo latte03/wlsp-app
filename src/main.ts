@@ -1,13 +1,13 @@
 import { createApp } from 'vue'
 import { createHead } from '@unhead/vue'
 import Vant from 'vant'
+import VmForm3 from 'vform3-mobile-builds' // 引入VmForm库
 import App from '@/App.vue'
 import router from '@/router'
 import pinia from '@/stores'
 import 'virtual:uno.css'
 import '@/styles/app.less'
 import { i18n } from '@/utils/i18n'
-import VmForm3 from 'vform3-mobile-builds' // 引入VmForm库
 // Vant 桌面端适配
 import '@vant/touch-emulator'
 import 'vant/lib/index.css'
