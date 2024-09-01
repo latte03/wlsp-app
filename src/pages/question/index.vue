@@ -7,11 +7,12 @@ definePage({
   name: 'form-render-list',
   meta: {
     level: 2,
-    title: '问卷列表',
+    title: '民意征集',
     i18n: 'menus.formRenderList',
   },
 })
 
+useTitle('民意征集')
 const loading = ref(false)
 const finished = ref(false)
 const listData = ref<QuestionRecord[]>([])
