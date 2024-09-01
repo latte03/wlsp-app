@@ -28,6 +28,7 @@ const showLeftArrow = computed(() => {
 
 <template>
   <VanNavBar
+    v-if="false"
     :title="title"
     :fixed="true"
     clickable

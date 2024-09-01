@@ -8,7 +8,7 @@ import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 // 可以根据自己的需要修改，常见的如 Access-Token，Authorization
 // 需要注意的是，请尽量保证使用中横线`-` 来作为分隔符，
 // 避免被 nginx 等负载均衡器丢弃了自定义的请求头
-export const REQUEST_TOKEN_KEY = 'Access-Token'
+export const REQUEST_TOKEN_KEY = 'Token'
 
 // 创建 axios 实例
 const request = axios.create({
@@ -52,8 +52,10 @@ function requestHandler(config: InternalAxiosRequestConfig): InternalAxiosReques
   const savedToken = localStorage.get(STORAGE_TOKEN_KEY)
   // 如果 token 存在
   // 让每个请求携带自定义 token, 请根据实际情况修改
-  if (savedToken)
+  // config.headers[REQUEST_TOKEN_KEY] = 'eyJ0eXAiOiJKc29uV2ViVG9rZW4iLCJhbGciOiJIUzI1NiJ9.eyJDdXJyZW50Q29tcGFueUlkIjoiIiwiQ3VycmVudERlcHRJZCI6IiIsIlRlbmFudElkIjoiNTA0ODgwMjAwMjg0Njk0NzU5IiwiVXVpZCI6ImMxMzcxZTRkNWE4NGU2M2MzYTdjYjc3Y2JjM2U2NmFkIiwiQWNjb3VudElkIjoiIiwiVXNlcklkIjoiNTIxMzYxNDExNDMzNjI4ODgzIiwiQ3VycmVudFRvcENvbXBhbnlJZCI6IiIsIkNsaWVudElkIjoiN29rbGxsMGIyZTAyY2h3OXd0bjFucmtqIiwiR3JhbnRUeXBlIjoiV0VDSEFUX01JTkkiLCJFbXBsb3llZUlkIjoiIiwiQWNjb3VudE5hbWUiOiIiLCJpYXQiOjE3MjUxNzUzNDQsIm5iZiI6MTcyNTE3NTM0NCwiZXhwIjoxNzI1MTgyNTQ0fQ.2FTwik7aCGU7LtAvpOAMrGxcjjAQ6w585GR00Hi5Njc'
+  if (savedToken) {
     config.headers[REQUEST_TOKEN_KEY] = savedToken
+  }
 
   return config
 }

@@ -20,7 +20,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       port: 3000,
       proxy: {
         '/api': {
-          target: '',
+          target: 'https://www.txwlsq.com/wlsq-api',
           ws: false,
           changeOrigin: true,
         },

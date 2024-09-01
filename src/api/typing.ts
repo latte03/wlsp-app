@@ -1,16 +1,22 @@
 export interface ResponseBody<T = any> {
-  message?: string
+  msg?: string
   code?: number
   data?: T
-  success: boolean
+  isSuccess: boolean
 }
 
 /** 统一返回结构体 */
 
 export interface PageResult<T = any> {
-  data: T[]
-  current?: number
-  pageSize?: number
-  total?: number
-  success: boolean
+
+  records: T[]
+  total: string
+  size: string
+  current: string
+  orders: any[]
+  optimizeCountSql: boolean
+  searchCount: boolean
+  maxLimit: null
+  countId: null
+  pages: string
 }

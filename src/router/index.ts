@@ -7,6 +7,9 @@ import 'nprogress/nprogress.css'
 import type { EnhancedRouteLocation } from './types'
 import useRouteTransitionNameStore from '@/stores/modules/routeTransitionName'
 import useRouteCacheStore from '@/stores/modules/routeCache'
+import { REQUEST_TOKEN_KEY } from '@/utils/request'
+import { localStorage } from '@/utils/local-storage'
+import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 
 NProgress.configure({ showSpinner: true, parent: '#app' })
 
@@ -22,12 +25,16 @@ if (import.meta.hot) {
 
 router.beforeEach((to: EnhancedRouteLocation, from, next) => {
   NProgress.start()
-
   const routeCacheStore = useRouteCacheStore()
   const routeTransitionNameStore = useRouteTransitionNameStore()
 
   // Route cache
   routeCacheStore.addRoute(to)
+  const token = to.query[REQUEST_TOKEN_KEY]
+
+  if (token) {
+    localStorage.set(STORAGE_TOKEN_KEY, token)
+  }
 
   if (to.meta.level > from.meta.level)
     routeTransitionNameStore.setName('slide-fadein-left')

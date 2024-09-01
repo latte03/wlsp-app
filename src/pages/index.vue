@@ -46,6 +46,7 @@ const menuItems = computed(() => ([
   { title: t('menus.persistPiniaState'), route: 'counter' },
   { title: t('menus.404Demo'), route: 'unknown' },
   { title: t('menus.keepAlive'), route: 'keepalive' },
+  { title: t('menus.formRenderList'), route: 'form-render' },
 ]))
 </script>
 
