@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createHead } from '@unhead/vue'
 import Vant from 'vant'
 import VmForm3 from 'vform3-mobile-builds' // 引入VmForm库
+import { setupModules } from './modules'
 import App from '@/App.vue'
 import router from '@/router'
 import pinia from '@/stores'
@@ -24,14 +25,12 @@ import 'vant/es/image-preview/style'
 import 'vform3-mobile-builds/dist/render.style.css' // 引入VmForm样式
 
 const app = createApp(App)
-const head = createHead()
 
 app.use(Vant)
 app.use(VmForm3) // 全局注册VForm(同时注册了vm-form-designer和vm-form-render组件)
 
-app.use(head)
 app.use(router)
 app.use(pinia)
 app.use(i18n)
-
+setupModules(app)
 app.mount('#app')

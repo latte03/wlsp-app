@@ -7,8 +7,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CaseCard: typeof import('./components/CaseCard/index.vue')['default']
     Chart: typeof import('./components/Chart/index.vue')['default']
+    FormFieldPicker: typeof import('./components/Form/FormFieldPicker.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
+    Propaganda: typeof import('./components/Propaganda/index.vue')['default']
+    PropagandaCard: typeof import('./components/Propaganda/PropagandaCard.vue')['default']
     QuestionItem: typeof import('./components/QuestionItem/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -32,5 +36,6 @@ declare module 'vue' {
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTag: typeof import('vant/es')['Tag']
     VanTextEllipsis: typeof import('vant/es')['TextEllipsis']
+    WithAvatar: typeof import('./components/WithAvatar/index.vue')['default']
   }
 }

@@ -14,6 +14,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import Sitemap from 'vite-plugin-sitemap'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import UnpluginSvgComponent from 'unplugin-svg-component/vite'
 import { createViteVConsole } from './vconsole'
 
 export function createVitePlugins() {
@@ -113,6 +114,48 @@ export function createVitePlugins() {
           },
         ],
       },
+    }),
+
+    /**
+     * svg组件自动导入
+     */
+    UnpluginSvgComponent({
+      // 指定需要缓存的图标文件夹
+      iconDir: 'src/icons',
+      dts: true,
+
+      /**
+       * 通常, 插件会把svg标签内的fill, stroke属性替换成currentColor,
+       * 此属性会对每个svg路径进行正则匹配, 匹配成功的svg则不会替换currentColor, 而是保留原有的颜色.
+       * preserveColor: getFilePath('icons/common'),
+       */
+      dtsDir: 'src',
+      svgSpriteDomId: 'svg-id',
+
+      /**
+       * 给每个svg name加上前缀,使用时记得加上这个前缀
+       */
+      // prefix: 'icon',
+
+      /**
+       * 生成的组件名称
+       */
+      componentName: 'SvgIcon',
+      componentStyle: 'width:1em;height:1em;fill: currentcolor;display: inline-block;',
+      symbolIdFormatter: (svgName: string, prefix: string): string => {
+        const nameArr = svgName.split('/')
+        if (prefix)
+          nameArr.unshift(prefix)
+        return nameArr.join('-').replace(/\.svg$/, '')
+      },
+
+      /**
+       * svgo 的优化参数
+       * @link https://github.com/svg/svgo
+       */
+      optimizeOptions: undefined,
+      scanStrategy: 'text',
+      treeShaking: false,
     }),
   ]
 }

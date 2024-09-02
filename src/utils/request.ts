@@ -1,6 +1,6 @@
-import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
+import type { AxiosError, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
-import { showNotify } from 'vant'
+import { showFailToast, showNotify } from 'vant'
 import { localStorage } from '@/utils/local-storage'
 import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 
@@ -27,7 +27,7 @@ export type RequestError = AxiosError<{
 // 异常拦截处理器
 function errorHandler(error: RequestError): Promise<any> {
   if (error.response) {
-    const { data = {}, status, statusText } = error.response
+    const { data = {} as any, status, statusText } = error.response
     // 403 无权限
     if (status === 403) {
       showNotify({
@@ -66,10 +66,61 @@ request.interceptors.request.use(requestHandler, errorHandler)
 
 // 响应拦截器
 function responseHandler(response: { data: any }) {
+  if (response.data.code === 500) {
+    showFailToast(response.data.msg || '系统错误')
+    return Promise.reject(new Error('系统错误'))
+  }
   return response.data
 }
 
 // Add a response interceptor
 request.interceptors.response.use(responseHandler, errorHandler)
+
+export interface AgResponse {
+  code: number | string
+  msg: string
+}
+export interface AgResponseError extends AgResponse {
+  data: null
+  success: false
+}
+export interface AgResponseSuccess<T> extends AgResponse {
+  data: T
+  rows: T
+  success: true
+}
+class AgAxios {
+  post = async <T>(url: string, params: any, config?: AxiosRequestConfig<any> | undefined) => {
+    const res = await axios.post<AgResponseSuccess<T>>(url, params, config)
+    if (res.data.code === 200) {
+      return res.data?.data
+    }
+    else {
+      showFailToast(res.data.msg)
+      return Promise.reject(res.data)
+    }
+  }
+
+  getList = async <T = any>(
+    url: string,
+    params?: any,
+    config?: AxiosRequestConfig<any> | undefined,
+  ) => {
+    const res = await axios.get<AgResponseSuccess<T>>(url, { params, ...config })
+    return res.data
+  }
+
+  get = async <T = any>(
+    url: string,
+    params?: any,
+    config?: AxiosRequestConfig<any> | undefined,
+  ) => {
+    const res = await axios.get<AgResponseSuccess<T>>(url, { params, ...config })
+    return res.data.data || res.data.rows
+  }
+}
+const agAxios = new AgAxios()
+
+export { agAxios }
 
 export default request
