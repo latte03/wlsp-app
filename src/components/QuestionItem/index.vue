@@ -39,8 +39,16 @@ function onItemClick() {
       disabled: isDisabled,
     }" @click="onItemClick"
   >
-    <div>
-      {{ record.name }}
+    <div class="flex items-center justify-between">
+      <div>
+        <van-text-ellipsis :content="record.name " />
+      </div>
+
+      <div>
+        <van-tag color="#7232dd" plain>
+          {{ record.stateName }}
+        </van-tag>
+      </div>
     </div>
 
     <div class="question-time">

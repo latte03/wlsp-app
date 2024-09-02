@@ -2,25 +2,26 @@
 import { showToast } from 'vant/es'
 import { useRequest } from 'vue-request'
 import { getQuestion, submitQuestion } from '@/api'
+import type { QuestionRecord } from '@/api/question'
 
 definePage({
   name: 'form-render',
   meta: {
     level: 2,
     title: '问卷详情',
-    i18n: 'menus.formRenderView',
+    i18n: 'menus.questionView',
   },
 })
-
+const title = useTitle()
 const route = useRoute()
 const router = useRouter()
-const id = route.query.id
+const id = route.query.id || '536861433008837645'
 
 const formJson = ref()
 const formData = ref({})
 const vFormRef = ref(null)
 const optionData = ref({})
-
+const data = ref<QuestionRecord | undefined>(undefined)
 const isDisabled = ref(false)
 const submit = useRequest(submitQuestion, {
   manual: true,
@@ -28,6 +29,8 @@ const submit = useRequest(submitQuestion, {
 
 onMounted(async () => {
   const res = await getQuestion(id)
+  data.value = res.data
+  title.value = `${res.data.name}详情`
   if (!res.data.jsonConfig) {
     return
   }
@@ -61,7 +64,7 @@ function onClickButton() {
       jsonData: JSON.stringify(formData),
     })
     router.replace({
-      path: '/form-render',
+      path: '/question',
     })
   }).catch((error) => {
     // Form Validation failed
@@ -74,9 +77,19 @@ function onClickButton() {
 
 <template>
   <div class="p-16">
+    <div class="question-name mb-16">
+      {{ data?.name }}
+    </div>
+    <div class="mb-16" v-html="data?.content " />
     <vm-form-render v-if="formJson" ref="vFormRef" :form-json="formJson" :form-data="formData" :option-data="optionData" />
     <van-action-bar v-if="!isDisabled">
       <van-action-bar-button :loading="submit.loading.value" type="danger" color="#00573d" text="立即提交" @click="onClickButton" />
     </van-action-bar>
   </div>
 </template>
+
+<style lang="less" scoped>
+.question-name {
+  font-size: 16px;
+}
+</style>

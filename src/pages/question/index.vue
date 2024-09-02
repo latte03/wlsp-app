@@ -8,7 +8,7 @@ definePage({
   meta: {
     level: 2,
     title: '民意征集',
-    i18n: 'menus.formRenderList',
+    i18n: 'menus.questionList',
   },
 })
 

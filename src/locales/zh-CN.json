@@ -10,8 +10,8 @@
     "404Demo": "🙅 404页 演示",
     "unocssExample": "🎨 Unocss 示例",
     "keepAlive": "🧡 KeepAlive 演示",
-    "formRenderList": "问卷列表",
-    "formRenderView": "问卷详情"
+    "questionList": "民意征集",
+    "questionView": "民意征集详情"
   },
   "mock": {
     "fromAsyncData": "来自异步请求的数据",
