@@ -3,7 +3,9 @@ import process from 'node:process'
 
 const msg = fs.readFileSync('.git/COMMIT_EDITMSG', 'utf-8').trim()
 
+// eslint-disable-next-line regexp/no-unused-capturing-group
 const commitRE = /^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?: .{1,50}/
+// eslint-disable-next-line regexp/no-unused-capturing-group
 const mergeRe = /^(Merge pull request|Merge branch)/
 
 if (!commitRE.test(msg)) {

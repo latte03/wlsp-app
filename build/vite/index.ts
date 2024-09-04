@@ -15,6 +15,7 @@ import Sitemap from 'vite-plugin-sitemap'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import UnpluginSvgComponent from 'unplugin-svg-component/vite'
+import MetaLayouts from 'vite-plugin-vue-meta-layouts'
 import { createViteVConsole } from './vconsole'
 
 export function createVitePlugins() {
@@ -30,7 +31,14 @@ export function createVitePlugins() {
 
     // https://github.com/jbaubree/vite-plugin-sitemap
     Sitemap(),
-
+    /**
+     * 因为原来的 vite-plugin-vue-layouts 在 layout 组件中修改css 热更新不生效，故而换成这个
+     * @link https://github.com/dishait/vite-plugin-vue-meta-layouts
+     */
+    MetaLayouts({
+      // 打开修复 https://github.com/JohnCampionJr/vite-plugin-vue-layouts/issues/134，默认为 false 关闭
+      skipTopLevelRouteLayout: true,
+    }),
     // https://github.com/pengzhanbo/vite-plugin-mock-dev-server
     mockDevServerPlugin(),
 

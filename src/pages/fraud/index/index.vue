@@ -9,7 +9,7 @@ import { fraudApi } from '@/api/fraud'
 // import { sha } from '~build/git'
 definePage({
   name: 'IndexPage',
-  path: '/',
+  path: '/fraud/home',
   meta: {
     title: '首页',
     i18n: 'fraud.home',
@@ -30,7 +30,7 @@ const { data: list } = useRequest(fraudApi.getCaseList, {
   defaultParams: [{ pageSize: 100 }],
 })
 
-const onReportCreate = () => router.push('/report/create')
+const onReportCreate = () => router.push('/fraud/report/create')
 </script>
 
 <template>
@@ -45,16 +45,16 @@ const onReportCreate = () => router.push('/report/create')
       </van-swipe-item>
     </van-swipe>
 
-    <div class="p-4">
-      <div class="alarm flex p-3" :style="{ '--bg-alarm': `url(${pt2})` }">
+    <div class="p-16">
+      <div class="alarm flex p-12" :style="{ '--bg-alarm': `url(${pt2})` }">
         <i class="icon" :style="{ '--bg-icon': `url(${pt1})` }" />
 
-        <div class="flex-y-center flex-grow justify-between pl-2">
-          <div class="mr-2 flex-grow-1">
+        <div class="flex-y-center flex-grow justify-between pl-8">
+          <div class="mr-8 flex-grow-1">
             <div class="title">
               指尖举报
             </div>
-            <div class="van-ellipsis text-sm-1 opacity-75">
+            <div class="van-ellipsis opacity-75 text-sm-1">
               举报非法可疑诈骗行为
             </div>
           </div>
@@ -68,19 +68,19 @@ const onReportCreate = () => router.push('/report/create')
       </div>
     </div>
 
-    <div class="p-4">
+    <div class="p-16">
       <div class="section-title">
         最新案例
       </div>
 
       <div>
-        <CaseCard v-for="item in list?.rows" :key="item.id" :item="item" />
+        <CaseCard v-for="item in list?.records" :key="item.id" :item="item" />
       </div>
     </div>
   </div>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 .icon {
   display: block;
   width: 40px;

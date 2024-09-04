@@ -36,18 +36,18 @@ onMounted(() => {
 
 <template>
   <div class="post-page">
-    <van-image width="100%" height="56vw" :src="data?.image.url" />
-    <div class="title-wrap absolute px-4">
-      <div class="title-body rounded-md p-4 py-3">
-        <div class="post-title text-xl">
+    <van-image width="100%" height="56vw" :src="data?.img" />
+    <div class="title-wrap absolute px-12">
+      <div class="title-body rounded-3xl p-16 py-12">
+        <div class="post-title text-7xl">
           {{ data?.title }}
         </div>
-        <div class="post-time text-sm-1 mt-2 opacity-50">
-          {{ data?.updateTime }}
+        <div class="post-time mt-8 opacity-50 text-sm-1">
+          {{ data?.updatedTime }}
         </div>
       </div>
     </div>
-    <div class="post-content px-5 pt-16">
+    <div class="post-content px-20 pt-50">
       <div v-html="data?.content" />
     </div>
   </div>

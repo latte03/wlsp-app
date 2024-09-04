@@ -1,16 +1,15 @@
 import { omit } from 'lodash-es'
 
-import { systemApi } from '../system'
 import type { Publicize, PublicizeType } from './fraud'
-import { type AgResponseSuccess, agAxios } from '@/utils/request'
+import { agAxios } from '@/utils/request'
 
 const fraudApi = {
   async getPublicizeType() {
-    const res = await agAxios.get<PublicizeType[]>('/fraud/publicizeType/list', {
-      pageSize: 100,
+    const res = await agAxios.getList<PublicizeType[]>('/application/app/community/fraud/publicizeType/list', {
+      size: 100,
     })
 
-    return res.map((i) => {
+    return res.records.map((i) => {
       return {
         ...i,
         text: i.name,
@@ -19,64 +18,49 @@ const fraudApi = {
     })
   },
   async getPublicizeList(params: any) {
-    const res = await agAxios.getList<Publicize[]>('/fraud/publicize/list', params)
-    return transformData(res)
+    const res = await agAxios.getList<Publicize[]>('/application/app/community/fraud/publicize/list', params)
+
+    return res
   },
 
-  getCaseTypeType() {
-    return agAxios.get<PublicizeType[]>('/fraud/caseType/list', {
-      pageSize: 100,
+  async getCaseTypeType() {
+    const res = await agAxios.getList<PublicizeType[]>('/application/app/community/fraud/caseType/list', {
+      size: 100,
+    })
+
+    return res.records.map((i) => {
+      return {
+        ...i,
+        text: i.name,
+        value: i.id,
+      }
     })
   },
   async getCaseList(params: any) {
-    const res = await agAxios.getList<Publicize[]>('/fraud/case/list', params)
-    return transformData(res)
+    const res = await agAxios.getList<Publicize[]>('/application/app/community/fraud/case/list', params)
+
+    return res
   },
 
   async getPostDetail(params: { type: string, id: string }) {
-    const res = await agAxios.get<Publicize>(`/fraud/${params.type}/${params.id}`)
+    const res = await agAxios.get<Publicize>(`/application/app/community/fraud/${params.type}/${params.id}`)
 
-    const oss = await systemApi.getOSS(res.img)
-
-    return { ...res, image: oss[0] }
+    return res
   },
 
   async postReport(params: any) {
-    const res = await agAxios.post<Publicize>(`/fraud/report`, {
+    const res = await agAxios.post<Publicize>(`/application/app/community/fraud/report`, {
       status: 0,
       ...omit(params, ['fraudImg', 'fraudSound', 'fraudVedio']),
     })
 
     return { ...res }
   },
-}
+  async getReportClue() {
+    const res = await agAxios.get<Publicize>(`/application/app/community/fraud/report/clue`)
 
-async function transformData(res: AgResponseSuccess<Publicize[]>) {
-  const ids = res.rows
-    .filter(r => r.img)
-    .map(i => i.img)
-    .join(',')
-
-  if (!ids) {
-    return {
-      ...res,
-    }
-  }
-  const ossList = await systemApi.getOSS(ids)
-  const ossMap = ossList.reduce((map, item) => {
-    map.set(item.ossId, item)
-    return map
-  }, new Map())
-
-  return {
-    ...res,
-    rows: res.rows.map((i) => {
-      return {
-        ...i,
-        image: ossMap.get(i.img),
-      }
-    }),
-  }
+    return { ...res }
+  },
 }
 
 export { fraudApi }

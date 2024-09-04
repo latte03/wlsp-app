@@ -1,8 +1,12 @@
 <script setup lang="ts">
+// import { useRequest } from 'vue-request'
+// import { fraudApi } from '@/api/fraud'
+
 defineOptions({
   name: 'ProfilePage',
 })
 definePage({
+  path: '/fraud/profile',
   name: 'ProfilePage',
   meta: {
     layout: 'tab-bar-layout',
@@ -12,13 +16,15 @@ definePage({
     sort: 3,
   },
 })
+
+// const { data } = useRequest(fraudApi.getReportClue)
 </script>
 
 <template>
-  <div class="px-4">
+  <div class="px-16 pt-16">
     <WithAvatar />
 
-    <div>
+    <div class="pt-16">
       <van-grid :column-num="3">
         <van-grid-item>
           <div>0</div>

@@ -35,7 +35,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <div class="ReportCreate">
+  <div class="report-create">
     <van-form
       required="auto"
       validate-first
@@ -163,6 +163,6 @@ function onSubmit() {
 </template>
 
 <style lang="less" scoped>
-.ReportCreate {
+.report-create {
 }
 </style>

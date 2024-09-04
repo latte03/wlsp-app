@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import { createHead } from '@unhead/vue'
+
 import Vant from 'vant'
 import VmForm3 from 'vform3-mobile-builds' // 引入VmForm库
 import { setupModules } from './modules'
 import App from '@/App.vue'
-import router from '@/router'
+import { setupRouter } from '@/router'
 import pinia from '@/stores'
 import 'virtual:uno.css'
 import '@/styles/app.less'
@@ -23,14 +23,15 @@ import 'vant/es/dialog/style'
 import 'vant/es/notify/style'
 import 'vant/es/image-preview/style'
 import 'vform3-mobile-builds/dist/render.style.css' // 引入VmForm样式
+import '@unocss/reset/tailwind-compat.css'
 
 const app = createApp(App)
 
 app.use(Vant)
 app.use(VmForm3) // 全局注册VForm(同时注册了vm-form-designer和vm-form-render组件)
 
-app.use(router)
 app.use(pinia)
 app.use(i18n)
+setupRouter(app)
 setupModules(app)
 app.mount('#app')

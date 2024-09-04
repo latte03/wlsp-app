@@ -14,34 +14,34 @@ const router = useRouter()
 
 function onCLick() {
   router.push({
-    path: `/post/case/${props.item.id}`,
+    path: `/fraud/post/case/${props.item.id}`,
   })
 }
 </script>
 
 <template>
-  <div class="case-card w-full p-3" @click="onCLick">
-    <div class="case-card-title mb-2">
+  <div class="case-card w-full p-12" @click="onCLick">
+    <div class="case-card-title mb-8">
       {{ item.title }}
     </div>
     <div class="case-card-content w-full">
-      <div class="case-card-body mb-2 w-full flex">
-        <div class="case-card-text van-multi-ellipsis--l3 mr-2 flex-grow opacity-75">
+      <div class="case-card-body mb-8 w-full flex">
+        <div class="case-card-text van-multi-ellipsis--l3 mr-8 flex-grow opacity-75">
           {{ clearHTMLText(item.content) }}
         </div>
         <div class="case-card-cover flex-shrink-0">
           <van-image
             height="100%"
             width="100%"
-            :src="item.image?.url"
+            :src="item?.img"
             :alt="item.title"
             srcset=""
             class="h-full w-full"
           />
         </div>
       </div>
-      <div class="case-card-footer mt-2 opacity-50">
-        <span>{{ item.updateTime }}</span>
+      <div class="case-card-footer mt-8 opacity-50">
+        <span>{{ item.updatedTime }}</span>
       </div>
     </div>
   </div>

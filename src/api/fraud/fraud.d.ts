@@ -8,14 +8,15 @@ export interface PublicizeType {
 }
 
 export interface Publicize {
+  updatedTime: any
   id: string
   title: string
   img: string
   image?: OSSItem
   content: string
   views: number
-  createTime: Date
-  updateTime: Date
+  createdTime: string
+  updatedTime: string
   typeId: string
   recommend: number
 }

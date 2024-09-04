@@ -17,3 +17,12 @@ export async function submitQuestion(id, data): Promise<ResponseBody<any>> {
 export async function getQuestion(id): Promise<ResponseBody<QuestionRecord>> {
   return request.get(`/application/app/community/question/${id}`)
 }
+
+export function getAppConfig() {
+  return request.get('/application/app/data/type/538060136906346496/page', {
+    params: {
+      current: 1,
+      size: 20,
+    },
+  })
+}

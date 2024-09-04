@@ -28,11 +28,17 @@ export type RequestError = AxiosError<{
 function errorHandler(error: RequestError): Promise<any> {
   if (error.response) {
     const { data = {} as any, status, statusText } = error.response
+    if (status === 400) {
+      showNotify({
+        type: 'danger',
+        message: (data && data.msg) || statusText,
+      })
+    }
     // 403 无权限
     if (status === 403) {
       showNotify({
         type: 'danger',
-        message: (data && data.message) || statusText,
+        message: (data && data.msg) || statusText,
       })
     }
     // 401 未登录/未授权
@@ -66,7 +72,7 @@ request.interceptors.request.use(requestHandler, errorHandler)
 
 // 响应拦截器
 function responseHandler(response: { data: any }) {
-  if (response.data.code === 500) {
+  if ([500, -1].includes (response.data.code)) {
     showFailToast(response.data.msg || '系统错误')
     return Promise.reject(new Error('系统错误'))
   }
@@ -86,12 +92,14 @@ export interface AgResponseError extends AgResponse {
 }
 export interface AgResponseSuccess<T> extends AgResponse {
   data: T
-  rows: T
+  records: T
+  size: string
+  total: string
   success: true
 }
 class AgAxios {
   post = async <T>(url: string, params: any, config?: AxiosRequestConfig<any> | undefined) => {
-    const res = await axios.post<AgResponseSuccess<T>>(url, params, config)
+    const res = await request.post<AgResponseSuccess<T>>(url, params, config)
     if (res.data.code === 200) {
       return res.data?.data
     }
@@ -106,7 +114,7 @@ class AgAxios {
     params?: any,
     config?: AxiosRequestConfig<any> | undefined,
   ) => {
-    const res = await axios.get<AgResponseSuccess<T>>(url, { params, ...config })
+    const res = await request.get<AgResponseSuccess<T>>(url, { params, ...config })
     return res.data
   }
 
@@ -115,8 +123,8 @@ class AgAxios {
     params?: any,
     config?: AxiosRequestConfig<any> | undefined,
   ) => {
-    const res = await axios.get<AgResponseSuccess<T>>(url, { params, ...config })
-    return res.data.data || res.data.rows
+    const res = await request.get<T>(url, { params, ...config })
+    return res.data || res.data
   }
 }
 const agAxios = new AgAxios()

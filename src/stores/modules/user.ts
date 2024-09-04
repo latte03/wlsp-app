@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { STORAGE_TOKEN_KEY } from '../mutation-type'
+import { localStorage } from '@/utils/local-storage'
 
 import { userApi } from '@/api/user'
 // import type { LoginParams } from '@/api/user'
@@ -8,49 +10,25 @@ import type { UserInfo } from '@/api/user/type'
 import { store } from '@/stores'
 
 export const useUserStore = defineStore(
-  'user',
+  'user-store',
   () => {
     const token = ref('')
-    const loginInfo = ref<UserInfo | undefined>()
+    const loginInfo = ref<UserInfo | undefined>(undefined)
 
     const tokenSetTime = ref('')
 
     async function doLogion() {
-      const res = await userApi.doUserNameLogin()
+      const $token = localStorage.get(STORAGE_TOKEN_KEY)
+      token.value = $token
 
-      token.value = res.token
-
-      await getUserInfoByToken()
-      return Promise.resolve({ data: res, success: true })
-    }
-
-    async function getUserInfoByToken() {
-      const res = await userApi.getUserInfo(token.value)
-
+      const res = await userApi.getUserInfo()
       setTokenInfo({ info: res, token: token.value })
-      return Promise.resolve({ data: res, success: true })
+      return Promise.resolve({ success: true })
     }
 
-    async function doSSLogion(_params: { zj_unicom_token: string }) {
-      //   const res = await userApi.SSLogin(params)
-      //   if (res.data) {
-      //     setTokenInfo({ info: res.data, token: res.data.token })
-      //     return Promise.resolve({ data: res, success: true })
-      //   } else {
-      //     Message.error({
-      //       content: res.msg,
-      //     })
-      //     return Promise.resolve({ data: res, success: false })
-      //   }
-    }
     function clearLoginInfo() {
       token.value = ''
       loginInfo.value = undefined
-    }
-
-    async function setUserInfoByKey(_key: string) {
-      //   const res = await userApi.getTokenByKey(key)
-      //   setTokenInfo({ info: res.data, token: res.data.token })
     }
 
     function setTokenInfo(res: { info: UserInfo, token: string }) {
@@ -63,9 +41,7 @@ export const useUserStore = defineStore(
       token,
       loginInfo,
       tokenSetTime,
-      doSSLogion,
       setTokenInfo,
-      setUserInfoByKey,
       doLogion,
       clearLoginInfo,
     }
