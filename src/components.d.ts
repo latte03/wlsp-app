@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     CaseCard: typeof import('./components/CaseCard/index.vue')['default']
     Chart: typeof import('./components/Chart/index.vue')['default']
-    copy: typeof import('./components/QuestionItem copy/index.vue')['default']
     FormFieldPicker: typeof import('./components/Form/FormFieldPicker.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     Propaganda: typeof import('./components/Propaganda/index.vue')['default']
@@ -33,6 +32,7 @@ declare module 'vue' {
     VanImage: typeof import('vant/es')['Image']
     VanList: typeof import('vant/es')['List']
     VanNavBar: typeof import('vant/es')['NavBar']
+    VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanPicker: typeof import('vant/es')['Picker']
     VanPopup: typeof import('vant/es')['Popup']
     VanSpace: typeof import('vant/es')['Space']
@@ -47,7 +47,6 @@ declare module 'vue' {
     VanTag: typeof import('vant/es')['Tag']
     VanTextEllipsis: typeof import('vant/es')['TextEllipsis']
     VanUploader: typeof import('vant/es')['Uploader']
-    'VoteIte,': typeof import('./components/VoteIte
     VoteItem: typeof import('./components/VoteItem/index.vue')['default']
     WithAvatar: typeof import('./components/WithAvatar/index.vue')['default']
   }

@@ -27,9 +27,9 @@ const total = ref(0)
 async function onLoad() {
   loading.value = true
   const res = await queryQuestionList(page.value)
-  total.value = toNumber(res.data.total)
+  total.value = toNumber(res.data?.total)
 
-  listData.value = [...listData.value, ...res.data.records]
+  listData.value = [...listData.value, ...(res.data?.records || [])]
 
   if (listData.value.length >= total.value) {
     finished.value = true

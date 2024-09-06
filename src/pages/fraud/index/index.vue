@@ -19,7 +19,7 @@ definePage({
     sort: 1,
   },
 })
-
+useTitle('反诈首页')
 const router = useRouter()
 const banner = useAssetsImageURL('banner', { extension: '.png' })
 const pt1 = useAssetsImageURL('pt1', { extension: '.png' })

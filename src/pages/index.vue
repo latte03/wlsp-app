@@ -32,7 +32,9 @@ const { t } = useI18n()
 
 const showLanguagePicker = ref(false)
 const languageValues = ref<Array<string>>([locale.value])
-const language = computed(() => languageColumns.find(l => l.value === locale.value).text)
+const language = computed(() => {
+  return languageColumns.find(l => l.value === locale.value)?.text
+})
 
 function onLanguageConfirm(event: { selectedOptions: PickerColumn }) {
   locale.value = event.selectedOptions[0].value as string

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { showToast } from 'vant/es'
 import { useRequest } from 'vue-request'
+import dayjs from 'dayjs'
 import { getQuestion, submitQuestion } from '@/api'
 import type { QuestionRecord } from '@/api/question'
 
@@ -19,26 +20,35 @@ const id = route.query.id || '536861433008837645'
 
 const formJson = ref()
 const formData = ref({})
-const vFormRef = ref(null)
+const vFormRef = ref<any | null>(null)
 const optionData = ref({})
 const data = ref<QuestionRecord | undefined>(undefined)
-const isDisabled = ref(false)
+const isFilled = ref(false)
 const submit = useRequest(submitQuestion, {
   manual: true,
 })
+const isDisabled = computed(() => {
+  if (!data.value)
+    return false
+  const now = dayjs()
 
+  const startTime = dayjs(data.value.startTime)
+  const endTime = dayjs(data.value.endTime)
+
+  return !(now.isAfter(startTime) && now.isBefore(endTime))
+})
 onMounted(async () => {
   const res = await getQuestion(id)
   data.value = res.data
-  title.value = `${res.data.name}详情`
-  if (!res.data.jsonConfig) {
+  title.value = `${res.data?.name}详情`
+  if (!res.data?.jsonConfig) {
     return
   }
 
   formJson.value = JSON.parse(res.data.jsonConfig)
   if (res.data.communityQuestionUser) {
     formData.value = JSON.parse(res.data.communityQuestionUser.jsonData)
-    isDisabled.value = true
+    isFilled.value = true
   }
 })
 
@@ -76,13 +86,24 @@ function onClickButton() {
 </script>
 
 <template>
+  <van-notice-bar
+    v-if="isDisabled"
+    left-icon="volume-o"
+    text="问卷已结束"
+  />
+  <van-notice-bar
+    v-if="isFilled" color="#1989fa"
+    background="#ecf9ff"
+    left-icon="info-o"
+    text="您已经填写问卷"
+  />
   <div class="p-16">
     <div class="question-name mb-16">
       {{ data?.name }}
     </div>
     <div class="mb-16" v-html="data?.content " />
     <vm-form-render v-if="formJson" ref="vFormRef" :form-json="formJson" :form-data="formData" :option-data="optionData" />
-    <van-action-bar v-if="!isDisabled">
+    <van-action-bar v-if="!isDisabled && !isFilled" placeholder>
       <van-action-bar-button :loading="submit.loading.value" type="danger" color="#00573d" text="立即提交" @click="onClickButton" />
     </van-action-bar>
   </div>

@@ -20,7 +20,7 @@ export async function getQuestion(id): Promise<ResponseBody<QuestionRecord>> {
 }
 
 export function getAppConfig() {
-  return request.get('/application/app/data/type/538060136906346496/page', {
+  return request.post('/application/app/data/type/538060136906346496/page', {
     params: {
       current: 1,
       size: 20,

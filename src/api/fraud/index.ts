@@ -1,6 +1,6 @@
 import { omit } from 'lodash-es'
 
-import type { Publicize, PublicizeType } from './fraud'
+import type { Clue, Publicize, PublicizeType } from './fraud'
 import { agAxios } from '@/utils/request'
 
 const fraudApi = {
@@ -57,7 +57,7 @@ const fraudApi = {
     return { ...res }
   },
   async getReportClue() {
-    const res = await agAxios.get<Publicize>(`/application/app/community/fraud/report/clue`)
+    const res = await agAxios.get<Clue>(`/application/app/community/fraud/report/clue`)
 
     return { ...res }
   },

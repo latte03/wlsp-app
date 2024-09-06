@@ -86,7 +86,7 @@ function onLoad() {
 
 <template>
   <div class="PropagandaList">
-    <van-tabs v-model:active="active" type="card" class="mt-16">
+    <van-tabs v-model:active="active" type="card" class="mb-16 mt-16" :ellipsis="false">
       <van-tab v-for="_type in typeListComputed" :key="_type.id" :title="_type.name" />
     </van-tabs>
     <div>

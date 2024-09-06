@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
-import { handleHotUpdate, routes } from 'vue-router/auto-routes'
-import { createGetRoutes, setupLayouts } from 'virtual:meta-layouts'
+import { routes } from 'vue-router/auto-routes'
+import { createGetRoutes  } from 'virtual:meta-layouts'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'

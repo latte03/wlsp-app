@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRequest } from 'vue-request'
 import { fraudApi } from '@/api/fraud'
+import { getAppConfig } from '@/api'
 
 defineOptions({
   name: 'ProfilePage',
@@ -16,10 +17,21 @@ definePage({
     sort: 3,
   },
 })
+useTitle('反诈 | 我的')
 
+const router = useRouter()
 const { data } = useRequest(fraudApi.getReportClue)
+const appConfig = useRequest(getAppConfig)
 // eslint-disable-next-line no-console
-console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
+console.log('%c Line:23 🍷 appConfig', 'color:#ed9ec7', appConfig)
+
+function onGuid() {
+
+}
+
+function toRouter() {
+  router.push('/fraud/profile/books')
+}
 </script>
 
 <template>
@@ -29,15 +41,15 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
     <div class="pt-16">
       <van-grid :column-num="3">
         <van-grid-item>
-          <div>0</div>
+          <div>{{ data?.total }}</div>
           <div>指尖举报</div>
         </van-grid-item>
         <van-grid-item>
-          <div>0</div>
+          <div>{{ data?.clueTotal }}</div>
           <div>线索提供</div>
         </van-grid-item>
         <van-grid-item>
-          <div>0</div>
+          <div>{{ data?.telTotal }}</div>
           <div>号码标注</div>
         </van-grid-item>
       </van-grid>
@@ -46,11 +58,9 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
     <div>
       <van-grid :column-num="2">
         <van-grid-item>
-          <div>0</div>
           <div>音频录制</div>
         </van-grid-item>
-        <van-grid-item>
-          <div>0</div>
+        <van-grid-item @click="toRouter">
           <div>反炸手册</div>
         </van-grid-item>
       </van-grid>
@@ -58,7 +68,7 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
 
     <div>
       <van-cell-group>
-        <van-cell icon="location-o" title="反馈与帮助" is-link>
+        <van-cell icon="location-o" title="反馈与帮助" is-link to="/fraud/profile/help">
           <template #icon>
             <SvgIcon
               name="cell-icon-help"
@@ -66,7 +76,7 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
             />
           </template>
         </van-cell>
-        <van-cell title="联系社区" value="内容">
+        <van-cell title="联系社区" :value="appConfig.data.value?.data.contact">
           <template #icon>
             <SvgIcon
               name="cell-icon-connect"
@@ -74,7 +84,7 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
             />
           </template>
         </van-cell>
-        <van-cell title="社区导航" value="内容">
+        <van-cell title="社区导航" :value="appConfig.data.value?.data.communityName" is-link @click="onGuid">
           <template #icon>
             <SvgIcon
               name="cell-icon-location"
@@ -82,14 +92,14 @@ console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
             />
           </template>
         </van-cell>
-        <van-cell title="长辈版" is-link>
+        <!-- <van-cell title="长辈版" is-link>
           <template #icon>
             <SvgIcon
               name="cell-icon-old"
               style="width: 24px; height: 24px; margin-right: 8px; color: #8576da"
             />
           </template>
-        </van-cell>
+        </van-cell> -->
       </van-cell-group>
     </div>
   </div>

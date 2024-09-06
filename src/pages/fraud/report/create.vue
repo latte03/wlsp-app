@@ -7,7 +7,7 @@ import { fraudApi } from '@/api/fraud'
 defineOptions({
   name: 'ReportCreate',
 })
-
+useTitle('我要举报')
 const formModel = ref({
   address: '',
   content: '',

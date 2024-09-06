@@ -19,6 +19,8 @@ export default function useAutoThemeSwitcher(appStore: AppStore) {
   const targetElement = document.querySelector('html')
 
   const initializeThemeSwitcher = () => {
+    if (!targetElement)
+      return
     observer.observe(targetElement, observerOptions)
   }
 

@@ -30,7 +30,7 @@ function disposeChart() {
 
 function initChart() {
   disposeChart()
-  if (chartDom.value) {
+  if (chartDom.value && props.option) {
     // init echarts
     chart = echarts.init(chartDom.value, isRealDark.value ? 'dark-chart' : undefined)
     chart.setOption(props.option)
@@ -46,6 +46,8 @@ watch(isRealDark, () => {
 
 onMounted(() => {
   watch(() => props.option, () => {
+    if (!props.option)
+      return
     chart?.setOption(props.option)
   }, {
     deep: true,

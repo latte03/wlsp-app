@@ -6,11 +6,11 @@ import useRouteTransitionNameStore from '@/stores/modules/routeTransitionName'
 import useAutoThemeSwitcher from '@/hooks/useAutoThemeSwitcher'
 
 useHead({
-  title: 'Vue3 Vant Mobile',
+  title: '',
   meta: [
     {
       name: 'description',
-      content: 'Vue + Vite H5 Starter Template',
+      content: '',
     },
     {
       name: 'theme-color',

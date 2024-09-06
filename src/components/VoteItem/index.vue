@@ -1,5 +1,4 @@
 <script lang='ts' setup>
-import dayjs from 'dayjs'
 import type { VoteRecord } from '@/api/vote'
 
 interface PropsType {
@@ -10,20 +9,8 @@ defineOptions({
 })
 const props = defineProps<PropsType>()
 const router = useRouter()
-const isDisabled = computed(() => {
-  const now = dayjs()
-
-  const startTime = dayjs(props.record.voteStartTime)
-  const endTime = dayjs(props.record.voteEndTime)
-
-  return !(now.isAfter(startTime) && now.isBefore(endTime))
-})
 
 function onItemClick() {
-  if (isDisabled.value)
-
-    return
-
   router.push({
     path: '/vote/render',
     query: {
@@ -35,9 +22,7 @@ function onItemClick() {
 
 <template>
   <div
-    class="question-item mb-12 bg-white p-12" :class="{
-      disabled: isDisabled,
-    }" @click="onItemClick"
+    class="question-item mb-12 bg-white p-12" @click="onItemClick"
   >
     <div class="flex items-center justify-between">
       <div>
@@ -57,7 +42,7 @@ function onItemClick() {
 
     <div class="question-time mt-16">
       <van-icon name="friends-o" />
-      {{ record.voteAllNums }} 参与
+      {{ record.voteAllNums }} 人已经参与
     </div>
     <div class="question-time mt-6">
       <van-icon name="todo-list-o" />

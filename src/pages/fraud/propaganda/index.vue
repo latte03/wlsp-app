@@ -15,6 +15,7 @@ definePage({
   },
 })
 
+useTitle('反诈宣传')
 const active = ref(0)
 </script>
 

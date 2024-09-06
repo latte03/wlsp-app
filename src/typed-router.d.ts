@@ -26,6 +26,8 @@ declare module 'vue-router/auto-routes' {
     'IndexPage': RouteRecordInfo<'IndexPage', '/fraud/home', Record<never, never>, Record<never, never>>,
     'PostTypePage': RouteRecordInfo<'PostTypePage', '/fraud/post/:type/:id', { type: ParamValue<true>, id: ParamValue<true> }, { type: ParamValue<false>, id: ParamValue<false> }>,
     'ProfilePage': RouteRecordInfo<'ProfilePage', '/fraud/profile', Record<never, never>, Record<never, never>>,
+    '/fraud/profile/books': RouteRecordInfo<'/fraud/profile/books', '/fraud/profile/books', Record<never, never>, Record<never, never>>,
+    '/fraud/profile/help': RouteRecordInfo<'/fraud/profile/help', '/fraud/profile/help', Record<never, never>, Record<never, never>>,
     'PropagandaPage': RouteRecordInfo<'PropagandaPage', '/fraud/propaganda', Record<never, never>, Record<never, never>>,
     '/fraud/report/create': RouteRecordInfo<'/fraud/report/create', '/fraud/report/create', Record<never, never>, Record<never, never>>,
     'KeepAlive': RouteRecordInfo<'KeepAlive', '/keepalive', Record<never, never>, Record<never, never>>,

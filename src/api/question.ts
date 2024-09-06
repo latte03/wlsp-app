@@ -1,5 +1,5 @@
 export interface QuestionRecord {
-  id: null | string
+  id: string
   createdTime: Date
   createdBy: string
   updatedTime: Date

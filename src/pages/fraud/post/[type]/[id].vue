@@ -15,6 +15,7 @@ definePage({
 })
 
 const route = useRoute()
+const title = useTitle()
 
 const { type, id } = route.params as Record<string, any>
 const loadingToastRef = shallowRef<ToastWrapperInstance | null>(null)
@@ -23,6 +24,7 @@ const { data } = useRequest(fraudApi.getPostDetail, {
   defaultParams: [{ type, id }],
   onSuccess() {
     loadingToastRef.value?.close()
+    title.value = data.value?.title
   },
 })
 

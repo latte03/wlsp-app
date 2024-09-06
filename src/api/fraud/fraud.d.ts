@@ -20,3 +20,9 @@ export interface Publicize {
   typeId: string
   recommend: number
 }
+
+export interface Clue {
+  total: string
+  telTotal: string
+  clueTotal: string
+}
