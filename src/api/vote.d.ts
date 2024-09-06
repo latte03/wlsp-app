@@ -54,8 +54,22 @@ export interface VoteInfo {
   stateName: string
   voteType: null
   voteTypeName: null
-  communityVoteUser: null
+  communityVoteUser: CommunityVoteUser
 }
 
 export interface EchoMap {
+}
+export interface CommunityVoteUser {
+  id: string
+  createdTime: Date
+  createdBy: string
+  updatedTime: Date
+  updatedBy: string
+  voteId: string
+  voteType: number
+  userId: string
+  nickName: string
+  userPhone: string
+  sts: string
+  voteItem: string
 }

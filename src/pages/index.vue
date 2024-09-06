@@ -47,6 +47,7 @@ const menuItems = computed(() => ([
   { title: t('menus.404Demo'), route: 'unknown' },
   { title: t('menus.keepAlive'), route: 'keepalive' },
   { title: t('menus.questionList'), route: 'question' },
+  { title: t('menus.voteList'), route: 'vote' },
 ]))
 </script>
 

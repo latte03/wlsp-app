@@ -45,7 +45,7 @@ function onItemClick() {
       </div>
 
       <div>
-        <van-tag color="#7232dd" plain>
+        <van-tag type="primary">
           {{ record.stateName }}
         </van-tag>
       </div>
@@ -55,11 +55,15 @@ function onItemClick() {
       <van-text-ellipsis :content="record.explain" />
     </div>
 
-    <div class="question-time">
+    <div class="question-time mt-16">
+      <van-icon name="friends-o" />
+      {{ record.voteAllNums }} 参与
+    </div>
+    <div class="question-time mt-6">
       <van-icon name="todo-list-o" />
       {{ record.voteStartTime }} ~ {{ record.voteEndTime }}
     </div>
-    <div class="question-time">
+    <div class="question-time mt-6">
       <van-icon name="location-o" />
       {{ record.voteAddress }}
     </div>
@@ -77,10 +81,6 @@ function onItemClick() {
 
 .question-time {
   opacity: 0.5;
-  margin-top: 12px;
   font-size: 13px;
-  &:last-child {
-    margin-top: 4px;
-  }
 }
 </style>

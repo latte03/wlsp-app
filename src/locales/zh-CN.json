@@ -11,7 +11,9 @@
     "unocssExample": "🎨 Unocss 示例",
     "keepAlive": "🧡 KeepAlive 演示",
     "questionList": "民意征集",
-    "questionView": "民意征集详情"
+    "voteList": "投票",
+    "questionView": "民意征集详情",
+    "voteView": "投票"
   },
   "mock": {
     "fromAsyncData": "来自异步请求的数据",

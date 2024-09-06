@@ -36,7 +36,7 @@ export const voteApi = {
   },
 
   submit(id, data): Promise<ResponseBody<any>> {
-    return request.post(`/application/app/community/vote/${id}/submit`, data)
+    return request.post(`/application/app/community/vote/${id}/submit`, {}, { params: data })
   },
   getDetail(id): Promise<ResponseBody<VoteInfo>> {
     return request.get(`/application/app/community/vote/${id}`)
