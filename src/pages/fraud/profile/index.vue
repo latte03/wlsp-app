@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// import { useRequest } from 'vue-request'
-// import { fraudApi } from '@/api/fraud'
+import { useRequest } from 'vue-request'
+import { fraudApi } from '@/api/fraud'
 
 defineOptions({
   name: 'ProfilePage',
@@ -17,7 +17,9 @@ definePage({
   },
 })
 
-// const { data } = useRequest(fraudApi.getReportClue)
+const { data } = useRequest(fraudApi.getReportClue)
+// eslint-disable-next-line no-console
+console.log('%c Line:21 🌭 data', 'color:#93c0a4', data)
 </script>
 
 <template>

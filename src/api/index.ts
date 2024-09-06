@@ -1,5 +1,6 @@
 import type { QuestionRecord } from './question'
 import type { PageResult, ResponseBody } from './typing'
+import type { VoteInfo, VoteRecord } from './vote'
 import request from '@/utils/request'
 
 export async function queryProse(): Promise<any> {
@@ -25,4 +26,20 @@ export function getAppConfig() {
       size: 20,
     },
   })
+}
+
+export const voteApi = {
+  async queryList(params): Promise<ResponseBody<PageResult<VoteRecord>>> {
+    return request.get('/application/app/community/vote/page', {
+      params,
+    })
+  },
+
+  submit(id, data): Promise<ResponseBody<any>> {
+    return request.post(`/application/app/community/vote/${id}/submit`, data)
+  },
+  getDetail(id): Promise<ResponseBody<VoteInfo>> {
+    return request.get(`/application/app/community/vote/${id}`)
+  },
+
 }

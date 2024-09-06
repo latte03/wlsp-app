@@ -34,5 +34,7 @@ declare module 'vue-router/auto-routes' {
     'form-render-list': RouteRecordInfo<'form-render-list', '/question', Record<never, never>, Record<never, never>>,
     'form-render': RouteRecordInfo<'form-render', '/question/render', Record<never, never>, Record<never, never>>,
     'unocss': RouteRecordInfo<'unocss', '/unocss', Record<never, never>, Record<never, never>>,
+    'vote-list': RouteRecordInfo<'vote-list', '/vote', Record<never, never>, Record<never, never>>,
+    'vote-render': RouteRecordInfo<'vote-render', '/vote/render', Record<never, never>, Record<never, never>>,
   }
 }
