@@ -13,7 +13,9 @@
     "questionList": "民意征集",
     "voteList": "投票",
     "questionView": "民意征集详情",
-    "voteView": "投票"
+    "voteView": "投票",
+    "massPost": "事件上报",
+    "fraudHome": "诈骗"
   },
   "mock": {
     "fromAsyncData": "来自异步请求的数据",

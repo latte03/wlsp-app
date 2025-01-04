@@ -1,18 +1,15 @@
 <script lang="ts" setup>
 import TabBarLayout from '@/layouts/tab-bar-layout.vue'
-// import { useUserStore } from '@/store/modules/user'
-// import { isDev } from '@/utils/constant'
 
-// import { sha } from '~build/git'
 definePage({
-  name: 'IndexPage',
-  path: '/fraud',
+  name: 'MassPage',
+  path: '/mass',
 
 })
 </script>
 
 <template>
-  <TabBarLayout type="fraud" class="layout" />
+  <TabBarLayout type="mass" class="layout" />
 </template>
 
 <style lang="less" scoped>

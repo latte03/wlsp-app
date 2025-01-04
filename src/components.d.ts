@@ -10,6 +10,7 @@ declare module 'vue' {
     CaseCard: typeof import('./components/CaseCard/index.vue')['default']
     Chart: typeof import('./components/Chart/index.vue')['default']
     FormFieldPicker: typeof import('./components/Form/FormFieldPicker.vue')['default']
+    FormUpload: typeof import('./components/Form/FormUpload.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     Propaganda: typeof import('./components/Propaganda/index.vue')['default']
     PropagandaCard: typeof import('./components/Propaganda/PropagandaCard.vue')['default']

@@ -51,7 +51,7 @@ function onSubmit() {
           label="诈骗类型"
           placeholder="请选择"
           :rules="[{ required: true, message: '请选择诈骗类型' }]"
-          :columns="typeList as PickerColumn"
+          :columns="(typeList as PickerColumn)"
         />
         <van-field
           v-model="formModel.address"

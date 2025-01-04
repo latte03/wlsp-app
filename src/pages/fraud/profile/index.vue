@@ -58,9 +58,12 @@ function toRouter() {
     <div>
       <van-grid :column-num="2">
         <van-grid-item>
+          <SvgIcon class="text-9xl color-white" name="fraud-book" />
           <div>音频录制</div>
         </van-grid-item>
         <van-grid-item @click="toRouter">
+          <SvgIcon class="text-9xl color-white" name="fraud-video" />
+
           <div>反炸手册</div>
         </van-grid-item>
       </van-grid>

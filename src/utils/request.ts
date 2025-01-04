@@ -100,7 +100,12 @@ export interface AgResponseSuccess<T> extends AgResponse {
 class AgAxios {
   post = async <T>(url: string, params: any, config?: AxiosRequestConfig<any> | undefined) => {
     const res = await request.post<AgResponseSuccess<T>>(url, params, config)
-    if (res.data.code === 200) {
+    // eslint-disable-next-line ts/ban-ts-comment
+    // @ts-expect-error
+    if (res.code === 0) {
+      return res.data as T
+    }
+    if (res.data.code === 200 || res.data.code === 0) {
       return res.data?.data
     }
     else {
