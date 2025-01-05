@@ -3,12 +3,10 @@ import type { PickerColumn } from 'vant'
 import { useRequest } from 'vue-request'
 import { commApi } from '@/api/dict'
 
-interface PropsType { }
 defineOptions({
   name: 'MassPost',
 })
 
-const props = defineProps<PropsType>()
 definePage({
   path: '/mass/mass-post',
   name: 'MassPost',
@@ -37,8 +35,6 @@ const eventType = useRequest(commApi.getDict, {
   defaultParams: ['A24'],
   initialData: [],
 })
-
-const rules = ref({})
 
 function onSubmit() {
   console.log('%c Line:45 🥃', 'color:#42b983', formModel.value)

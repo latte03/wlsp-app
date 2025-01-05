@@ -3,8 +3,6 @@ defineOptions({
   name: 'EStation',
 })
 
-const props = defineProps<PropsType>()
-
 const modules = import.meta.glob<true, any>('./assets/*.png', {
   eager: true,
 })
@@ -15,8 +13,6 @@ const imgMap = Object.entries(modules).reduce((map, item) => {
 }, {} as Record<string, any>)
 
 const { data } = useStationData()
-
-interface PropsType {}
 
 const router = useRouter()
 function onTpClick(action) {

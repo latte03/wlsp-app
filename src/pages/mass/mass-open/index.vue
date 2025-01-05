@@ -1,9 +1,7 @@
 <script lang='ts' setup>
-interface PropsType {}
 defineOptions({
   name: 'MassOpen',
 })
-const props = defineProps<PropsType>()
 
 definePage({
   path: '/mass/mass-open',

@@ -12,7 +12,7 @@ interface PropsType {
 defineOptions({
   name: 'FormUpload',
 })
-const props = defineProps<PropsType>()
+defineProps<PropsType>()
 const modelValue = defineModel<string[]>('modelValue')
 
 const value = computed(() => {
@@ -24,8 +24,6 @@ const value = computed(() => {
 })
 
 async function afterRead(items: UploaderFileListItem | UploaderFileListItem[]) {
-  console.log('%c Line:23 🍞 file', 'color:#93c0a4', items)
-
   if (isArray(items)) {
     //
     return
@@ -35,7 +33,6 @@ async function afterRead(items: UploaderFileListItem | UploaderFileListItem[]) {
     ...(modelValue.value || []),
     res.url,
   ]
-  console.log('%c Line:34 🌮 res', 'color:#4fff4B', res)
 }
 </script>
 
