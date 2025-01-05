@@ -31,6 +31,7 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "resize-detector": "^0.3.0",
     "store": "^2.0.12",
+    "swiper": "^11.2.0",
     "vant": "^4.9.4",
     "vconsole": "^3.15.1",
     "vform3-builds": "^3.0.10",

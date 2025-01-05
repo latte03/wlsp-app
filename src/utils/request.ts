@@ -10,6 +10,7 @@ import { STORAGE_TOKEN_KEY } from '@/stores/mutation-type'
 // 避免被 nginx 等负载均衡器丢弃了自定义的请求头
 export const REQUEST_TOKEN_KEY = 'Token'
 export const QUERY_TOKEN_KEY = 'Token'
+export const TENANT_ID = 'tenantId'
 
 // 创建 axios 实例
 const request = axios.create({
