@@ -23,6 +23,7 @@ declare module 'vue-router/auto-routes' {
     'charts': RouteRecordInfo<'charts', '/charts', Record<never, never>, Record<never, never>>,
     'counter': RouteRecordInfo<'counter', '/counter', Record<never, never>, Record<never, never>>,
     '/e-station/': RouteRecordInfo<'/e-station/', '/e-station', Record<never, never>, Record<never, never>>,
+    '/e-station/knight-activity': RouteRecordInfo<'/e-station/knight-activity', '/e-station/knight-activity', Record<never, never>, Record<never, never>>,
     '/e-station/knight-cell': RouteRecordInfo<'/e-station/knight-cell', '/e-station/knight-cell', Record<never, never>, Record<never, never>>,
     '/e-station/knight-class': RouteRecordInfo<'/e-station/knight-class', '/e-station/knight-class', Record<never, never>, Record<never, never>>,
     '/e-station/knight-mall': RouteRecordInfo<'/e-station/knight-mall', '/e-station/knight-mall', Record<never, never>, Record<never, never>>,

@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 
 import Vant from 'vant'
 import VmForm3 from 'vform3-mobile-builds' // 引入VmForm库
+import TlbsMap from 'tlbs-map-vue'
 import { setupModules } from './modules'
 import App from '@/App.vue'
 import { setupRouter } from '@/router'
@@ -9,6 +10,7 @@ import pinia from '@/stores'
 import 'virtual:uno.css'
 import '@/styles/app.less'
 import { i18n } from '@/utils/i18n'
+
 // Vant 桌面端适配
 import '@vant/touch-emulator'
 import 'vant/lib/index.css'
@@ -26,6 +28,7 @@ import 'vform3-mobile-builds/dist/render.style.css' // 引入VmForm样式
 import '@unocss/reset/tailwind-compat.css'
 
 const app = createApp(App)
+app.use(TlbsMap)
 
 app.use(Vant)
 app.use(VmForm3) // 全局注册VForm(同时注册了vm-form-designer和vm-form-render组件)

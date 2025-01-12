@@ -15,6 +15,12 @@ const imgMap = Object.entries(modules).reduce((map, item) => {
 const { data } = useStationData()
 
 const router = useRouter()
+
+const header = computed(() => data.value?.name || '骑士e站')
+useHead({
+  title: header,
+})
+
 function onTpClick(action) {
   router.push({
     path: `/e-station/${action}`,
@@ -34,8 +40,8 @@ function onTpClick(action) {
           <img :src="imgMap.tp0" :srcset="`${imgMap.tp0}, ${imgMap['tp0@2x']} 2x`" alt="">
         </div>
 
-        <div class="tp tp-0" @click="onTpClick('knight-mall')">
-          <img :src="imgMap.tp3" :srcset="`${imgMap.tp3}, ${imgMap['tp3@2x']} 2x`" alt="">
+        <div class="tp tp-0" @click="onTpClick('knight-activity')">
+          <img :src="imgMap.tp5" :srcset="`${imgMap.tp5}, ${imgMap['tp5@2x']} 2x`" alt="">
         </div>
       </div>
 
@@ -47,6 +53,9 @@ function onTpClick(action) {
           <img :src="imgMap.tp1" :srcset="`${imgMap.tp1}, ${imgMap['tp1@2x']} 2x`" alt="">
         </div>
 
+        <div class="tp tp-0" @click="onTpClick('knight-mall')">
+          <img :src="imgMap.tp3" :srcset="`${imgMap.tp3}, ${imgMap['tp3@2x']} 2x`" alt="">
+        </div>
         <div class="tp tp-1" @click="onTpClick('knight-project')">
           <img :src="imgMap.tp4" :srcset="`${imgMap.tp4}, ${imgMap['tp4@2x']} 2x`" alt="">
         </div>
@@ -60,6 +69,5 @@ function onTpClick(action) {
 </template>
 
 <style lang='less' scoped>
-.e-station {
-}
+.e-station {}
 </style>
