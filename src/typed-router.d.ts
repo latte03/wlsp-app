@@ -26,6 +26,7 @@ declare module 'vue-router/auto-routes' {
     '/e-station/knight-activity': RouteRecordInfo<'/e-station/knight-activity', '/e-station/knight-activity', Record<never, never>, Record<never, never>>,
     '/e-station/knight-cell': RouteRecordInfo<'/e-station/knight-cell', '/e-station/knight-cell', Record<never, never>, Record<never, never>>,
     '/e-station/knight-class': RouteRecordInfo<'/e-station/knight-class', '/e-station/knight-class', Record<never, never>, Record<never, never>>,
+    '/e-station/knight-class-register': RouteRecordInfo<'/e-station/knight-class-register', '/e-station/knight-class-register', Record<never, never>, Record<never, never>>,
     '/e-station/knight-mall': RouteRecordInfo<'/e-station/knight-mall', '/e-station/knight-mall', Record<never, never>, Record<never, never>>,
     '/e-station/knight-project': RouteRecordInfo<'/e-station/knight-project', '/e-station/knight-project', Record<never, never>, Record<never, never>>,
     '/e-station/knight-station': RouteRecordInfo<'/e-station/knight-station', '/e-station/knight-station', Record<never, never>, Record<never, never>>,

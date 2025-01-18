@@ -33,6 +33,33 @@ class DataApi {
 
     return res
   }
+
+  getClassList = async (params: any) => {
+    const tenantId = localStorage.get(TENANT_ID)
+    if (!tenantId) {
+      throw new Error('tenantId is must')
+    }
+    const res = await agAxios.get('/application/app/post/station/class/query', { ...params, tenantId })
+    return res
+  }
+
+  classRegister = async (params: any) => {
+    const tenantId = localStorage.get(TENANT_ID)
+    if (!tenantId) {
+      throw new Error('tenantId is must')
+    }
+    const res = await agAxios.post('/application/app/post/station/class/register', params, { params: { tenantId } })
+    return res
+  }
+
+  queryServiceList = async (params?: any) => {
+    const tenantId = localStorage.get(TENANT_ID)
+    if (!tenantId) {
+      throw new Error('tenantId is must')
+    }
+    const res = await agAxios.get<Service[]>('/application/app/post/station/service/query', { ...params, tenantId })
+    return res
+  }
 }
 
 export const dataApi = new DataApi()
@@ -70,4 +97,19 @@ export interface ColumnData {
   pics: string
   created_by: string
   content: string
+}
+
+export interface Service {
+  shop_tag: string
+  created_time: Date
+  updated_time: Date
+  synced_success: number
+  lnglat: string
+  address: string
+  sts: string
+  synced_status: number
+  name: string
+  id: string
+  content: string
+  status: number
 }

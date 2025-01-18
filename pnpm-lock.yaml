@@ -74,6 +74,9 @@ importers:
       vue-i18n:
         specifier: ^9.13.1
         version: 9.13.1(vue@3.4.38(typescript@5.5.4))
+      vue-jsonp:
+        specifier: ^2.1.0
+        version: 2.1.0
       vue-request:
         specifier: ^2.0.4
         version: 2.0.4(vue@3.4.38(typescript@5.5.4))
@@ -4751,6 +4754,9 @@ packages:
     engines: {node: '>= 16'}
     peerDependencies:
       vue: ^3.0.0
+
+  vue-jsonp@2.1.0:
+    resolution: {integrity: sha512-kezmjaAcMWdieO3tWxniC+82DitYUYjR1e2GsWIKHCTf+zhWUt2nPhN3dnmnAVhDQ+po3BspM7sKjiQaIhijUg==}
 
   vue-request@2.0.4:
     resolution: {integrity: sha512-+Tu5rDy6ItF9UdD21Mmbjiq5Pq6NZSN9juH72hNQTMn1whHh4KZPTKWVLK2YS4nzbuEnPs+82G91AA2Fgd93mg==}
@@ -10015,6 +10021,8 @@ snapshots:
       '@intlify/shared': 9.13.1
       '@vue/devtools-api': 6.6.3
       vue: 3.4.38(typescript@5.5.4)
+
+  vue-jsonp@2.1.0: {}
 
   vue-request@2.0.4(vue@3.4.38(typescript@5.5.4)):
     dependencies:

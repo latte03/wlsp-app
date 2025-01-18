@@ -1,0 +1,60 @@
+{
+    "extConfig": {
+        "enums": [
+            {
+                "name": "ActionType",
+                "values": [
+                    "Building",
+                    "Codding",
+                    "Debugging",
+                    "Documenting",
+                    "Idle",
+                    "Testing"
+                ]
+            },
+            {
+                "name": "SessionState",
+                "values": [
+                    "Ongoing",
+                    "Idle",
+                    "Ended"
+                ]
+            }
+        ]
+    },
+    "data": [
+        {
+            "config": false,
+            "user": "latte03",
+            "dailySessions": [
+                {
+                    "date": "Sun Jan 12 2025",
+                    "sessions": [
+                        {
+                            "sessionInfo": {
+                                "id": "0a01f30a-d8ed-4527-8030-0d623705cd03",
+                                "duration": 5175,
+                                "idle": 5175,
+                                "state": "Ongoing",
+                                "durations": [
+                                    {
+                                        "id": "bd705a1b-ee08-462a-bc5d-387706791195",
+                                        "state": "Ongoing",
+                                        "begin": 1736694445540,
+                                        "end": 1736694445540,
+                                        "duration": 0
+                                    }
+                                ],
+                                "filesExt": [
+                                    "",
+                                    ".vue"
+                                ]
+                            },
+                            "actionType": "Codding"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
